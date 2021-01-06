@@ -1,5 +1,5 @@
+import axios from 'axios';
 import React, { Component } from 'react'
-import { v4 as uuidv4 } from 'uuid';
 import { Consumer } from '../context';
 import AddContactInput from './AddContactInput';
 
@@ -12,12 +12,7 @@ export default class AddContact extends Component {
         errors: {}
     };
 
-
-
-
     onChange = (e) => this.setState({ [e.target.name]: e.target.value });
-
-
     onSubmit = (dispatch, e) => {
         e.preventDefault();
         const { email, phone, name } = this.state;
@@ -37,15 +32,17 @@ export default class AddContact extends Component {
         }
 
         const newContact = {
-            id: uuidv4(),
             name,
             email,
             phone
         }
-        dispatch({ type: "ADD_CONTACT", payload: newContact });
-        this.setState = {
+
+        axios.post('https://jsonplaceholder.typicode.com/users', newContact)
+            .then(res => dispatch({ type: "ADD_CONTACT", payload: res.data }))
+        this.setState({
             name: '', phone: '', email: '', errors: {}
-        }
+        });
+        this.props.history.push('/');
     }
     render() {
         const { name, email, phone, errors } = this.state;
@@ -58,7 +55,6 @@ export default class AddContact extends Component {
                             <div className="card-header"> Add Contact</div>
                             <div className="card-body">
                                 <form onSubmit={this.onSubmit.bind(this, dispatch)} >
-
                                     <AddContactInput label="Name" name="name" placeholder="Enter Name" onChange={this.onChange} value={name} error={errors.name} />
                                     <AddContactInput label="Phone" name="phone" placeholder="Enter Phone" onChange={this.onChange} value={phone} error={errors.phone} />
                                     <AddContactInput label="Email" type="email" name="email" placeholder="Enter Email" onChange={this.onChange} value={email} error={errors.email} />

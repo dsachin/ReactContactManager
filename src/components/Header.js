@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 export default function Header(props) {
     const { branding } = props
     return (
@@ -8,8 +9,15 @@ export default function Header(props) {
             </div>
             <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
-                    <a href="/" className="nav-link">Home</a>
+                    <Link to="/" className="nav-link"> <i className="fas fa-home" /> Home</Link>
                 </li>
+                <li className="nav-item">
+                    <Link to="/addContact" className="nav-link"> <i className="fas fa-plus" />Add Contact</Link>
+                </li>
+                <li className="nav-item">
+                    <Link to="/about" className='nav-link'><i className="fas fa-question" /> About</Link>
+                </li>
+
 
             </ul>
         </nav>
