@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Contacts Manager APP
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple contact manager app doing CRUD operations.
 
 ## Available Scripts
 
