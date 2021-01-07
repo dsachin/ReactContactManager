@@ -2,6 +2,8 @@
 
 This is a simple contact manager app doing CRUD operations.
 
+#Deployed on [Github Page](https://dsachin.github.io/ReactContactManager/#/)
+
 ## Available Scripts
 
 In the project directory, you can run:
